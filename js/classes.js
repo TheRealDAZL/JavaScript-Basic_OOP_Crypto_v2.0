@@ -1,6 +1,6 @@
 class Message {
     constructor(id, message, cleSubstitution = "", cleTransposition = "", sensDuChiffrement,
-                librairie, resultat = "") {
+                librairie = "", resultat = "") {
         this.id = id
         this.message = message
         this.cleSubstitution = cleSubstitution
@@ -52,7 +52,7 @@ class Message {
         // Si la clé n'est pas vide et qu'elle possède moins ou autant de caractères que la librairie
         if (cle !== "" && cle.length <= this.librairie.length) {
             // Pour chaque caractère de la clé, valider que le caractère fait partie de la librairie
-            for (let i = 0; i < cle; i++) {
+            for (let i = 0; i < cle.length; i++) {
                 // Si un des caractères de la clé n'est pas valide, afficher un message d'erreur
                 if (!this.librairie.includes(cle[i])) {
                     document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
