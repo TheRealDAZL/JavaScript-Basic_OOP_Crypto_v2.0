@@ -18,7 +18,7 @@ class Message {
         }
 
         for (let i = 0; i < this.librairie.length; i++) {
-            if (this.librairie.indexOf(this.librairie[i]) !== this.librairie.lastIndexOf(this.librairie[i])) {
+            if (this.librairie.substring(i + 1).includes(this.librairie[i])) {
                 document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
                 document.getElementById("messageUtilisateur").classList.add("erreur")
                 document.getElementById("messageUtilisateur").textContent = `Votre librairie ne doit pas contenir plus d'une fois le même caractère.`
