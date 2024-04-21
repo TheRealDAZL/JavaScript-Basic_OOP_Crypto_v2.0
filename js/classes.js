@@ -295,21 +295,14 @@ class Liste {
         document.getElementById("supprimerTout").disabled = false
     }
 
-    // Méthode qui supprime un message de la liste d'objets, basé sur l'id passé en paramètre. L'argument modifier
-    // sert içi à identifier si on modifie un objet, ou si on supprime un objet. Si modifier === true, c'est qu'on modifie
-    // l'objet, et sinon alors c'est qu'on supprime l'objet.
-    supprimerMessage(id, modifier = false) {
-        let confirmation
-
-        if (!modifier) {
-            confirmation = (window.confirm("Voulez-vous vraiment supprimer cet objets?"))
+    // Méthode qui supprime un message de la liste d'objets, basé sur l'id passé en paramètre. L'argument supprimer
+    // sert içi à identifier si on modifie un objet, ou si on supprime un objet.
+    supprimerMessage(id, supprimer = false) {
+        if (!supprimer) {
+            supprimer = (window.confirm("Voulez-vous vraiment supprimer cet objet?"))
         }
 
-        else {
-            confirmation = true
-        }
-
-        if (confirmation) {
+        if (supprimer) {
             // Référence : MDN Web Docs - Array.prototype.splice()
             // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
             this.messages.splice(id, 1)
