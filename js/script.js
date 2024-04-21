@@ -18,8 +18,9 @@ document.getElementById("messageLibrairie").innerHTML = `Instructions :<br>Par d
     `de 1 à 64 caractères de long.<br>Si vous entrez un message de moins de 64 caractères, le message sera complété<br>` +
     `automatiquement de façon à faire 64 caractères de long.<br>Même chose pour ce qui est des clés, cependant si on ` +
     `laisse les champs vides<br>alors les clés sont générées de façon automatique.<br><br>Par défaut, les caractères autorisés pour ` +
-    `le message et les deux clés sont :<br>${librairie.toString()}<br><br>Vous pouvez aussi créer votre propre librairie de caractères,
-     cependant<br>votre message et vos clés devront être de la même longueur que votre librairie.`
+    `le message et les deux clés sont<br>(note : l'espace ou le blanc est écrit en texte entre parenthèses pour le distinguer) :
+     <br>${librairie.toString()}<br><br>Vous pouvez aussi créer votre propre librairie de caractères, cependant<br>votre message
+      et vos clés devront être de la même longueur que votre librairie.`
 
 elementBtnLibrairie.onclick = function () { afficherInstructions() }
 elementLibrairie.onfocus = function () { compterCaracteres(elementLibrairie.value.toString().length) }
