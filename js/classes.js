@@ -405,8 +405,8 @@ class Liste {
                                                      <span class="couleurTexte fs-5">Librairie de caractères :</span><br><span class="couleurObjet fs-5">${this.messages[index].librairie.toString()}</span><br>
                                                      <span class="couleurTexte fs-5">Sens du chiffrement :</span><br><span class="couleurObjet fs-5">${sens}</span></p>
                             </div>
-                            <button class="btn btn-primary btn-sm col-md-9 mx-auto mb-2" onclick="listeDeMessages.modifierMessage(${index})" type="button">Modifier cet objet</button>
-                            <button class="btn btn-danger btn-sm col-md-9 mx-auto mb-2" onclick="listeDeMessages.supprimerMessage(${index})" type="button">Supprimer cet objet</button>
+                            <button class="btn btn-primary col-md-9 mx-auto mb-2" onclick="listeDeMessages.modifierMessage(${index})" type="button">Modifier cet objet</button>
+                            <button class="btn btn-danger col-md-9 mx-auto mb-2" onclick="listeDeMessages.supprimerMessage(${index})" type="button">Supprimer cet objet</button>
                         </div>
                       </div>`
         }
