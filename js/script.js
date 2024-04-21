@@ -5,7 +5,7 @@ let elementMsgUtilisateur =  document.getElementById("messageUtilisateur")
 let elementMsgIntrant = document.getElementById("messageIntrant")
 let elementCleSub = document.getElementById("cleIntrantSub")
 let elementCleTra = document.getElementById("cleIntrantTra")
-let librairie = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
+let librairie = "0123456789<br>abcdefghijklm<br>nopqrstuvwxyz<br>ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ ."
 let afficherLibrairie = true
 let sensDuChiffrement
 
