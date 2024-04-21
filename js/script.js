@@ -5,7 +5,6 @@ let elementMsgUtilisateur =  document.getElementById("messageUtilisateur")
 let elementMsgIntrant = document.getElementById("messageIntrant")
 let elementCleSub = document.getElementById("cleIntrantSub")
 let elementCleTra = document.getElementById("cleIntrantTra")
-let librairie = "0 1 2 3 4 5 6 7 8 9 a b c d e f g h i j k l m n o p q r s t u v w x y z A B C D E F G H I J K L M N O P Q R S T U V W X Y Z (espace) ."
 let afficherLibrairie = true
 let sensDuChiffrement
 
@@ -16,11 +15,10 @@ reinitialiser()
 
 document.getElementById("messageLibrairie").innerHTML = `Instructions :<br>Par défaut, votre message doit absolument faire ` +
     `de 1 à 64 caractères de long.<br>Si vous entrez un message de moins de 64 caractères, le message sera complété<br>` +
-    `automatiquement de façon à faire 64 caractères de long.<br>Même chose pour ce qui est des clés, cependant si on ` +
+    `automatiquement de façon à faire 64 caractères de long.<br><br>Même chose pour ce qui est des clés, cependant si on ` +
     `laisse les champs vides<br>alors les clés sont générées de façon automatique.<br><br>Par défaut, les caractères autorisés pour ` +
-    `le message et les deux clés sont<br>(note : l'espace ou le blanc est écrit en texte entre parenthèses pour le distinguer) :
-     <br>${librairie.toString()}<br><br>Vous pouvez aussi créer votre propre librairie de caractères, cependant<br>votre message
-      et vos clés devront être de la même longueur que votre librairie.`
+    `le message et les deux clés sont :<br>0123456789abcdefghijklmnopqrstuv<br>wxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .<br><br>Vous pouvez aussi 
+     créer votre propre librairie de caractères, cependant<br>votre message et vos clés devront être de la même longueur que votre librairie.`
 
 elementBtnLibrairie.onclick = function () { afficherInstructions() }
 elementLibrairie.onfocus = function () { compterCaracteres(elementLibrairie.value.toString().length) }
