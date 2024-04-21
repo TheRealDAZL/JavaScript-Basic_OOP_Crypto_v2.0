@@ -298,24 +298,38 @@ class Liste {
     // Méthode qui supprime un message de la liste d'objets, basé sur l'id passé en paramètre. L'argument modifier
     // sert içi à identifier si on modifie un objet, ou si on supprime un objet. Si modifier === true, c'est qu'on modifie
     // l'objet, et sinon alors c'est qu'on supprime l'objet.
-    supprimerMessage(id) {
-        // Référence : MDN Web Docs - Array.prototype.splice()
-        // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
-        this.messages.splice(id, 1)
+    supprimerMessage(id, modifier = false) {
+        let confirmation
 
-        if (this.messages.length !== 0) {
-            let copieTableau = this.messages
+        if (!modifier) {
+            confirmation = (window.confirm("Voulez-vous vraiment supprimer cet objets?"))
+        }
 
-            this.supprimerTousLesMessages()
+        else {
+            confirmation = true
+        }
 
-            // Si ce n'est pas égal à 0, ça ne fonctionnera pas comme il le faut
-            for (let index = 0; index < copieTableau.length; index++) {
-                let objetMessage = new Message(index, copieTableau[index].message, copieTableau[index].cleSubstitution,
+        if (confirmation) {
+            // Référence : MDN Web Docs - Array.prototype.splice()
+            // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
+            this.messages.splice(id, 1)
+
+            if (this.messages.length !== 0) {
+                let copieTableau = this.messages
+
+                this.supprimerTousLesMessages()
+
+                // Si ce n'est pas égal à 0, ça ne fonctionnera pas comme il le faut
+                for (let index = 0; index < copieTableau.length; index++) {
+                    let objetMessage = new Message(index, copieTableau[index].message, copieTableau[index].cleSubstitution,
                         copieTableau[index].cleTransposition, copieTableau[index].sensDuChiffrement, copieTableau[index].librairie, copieTableau[index].resultat)
-                this.ajouterMessage(objetMessage)
+                    this.ajouterMessage(objetMessage)
+                }
             }
-        } else {
-            this.supprimerTousLesMessages()
+
+            else {
+                this.supprimerTousLesMessages()
+            }
         }
     }
 
@@ -344,7 +358,7 @@ class Liste {
 
         document.getElementById("messageIntrant").focus()
 
-        this.supprimerMessage(id)
+        this.supprimerMessage(id, true)
         this.toString()
     }
 
