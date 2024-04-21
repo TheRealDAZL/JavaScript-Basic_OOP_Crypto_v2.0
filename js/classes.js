@@ -398,12 +398,12 @@ class Liste {
                             <div class="card-body">
                                 <p class="card-title couleurTexte fs-4">Objet no. ${this.messages[index].id + 1}</p>
                                 <img src="${this.messages[index].image}" class="img-fluid" alt="Image de l'objet">
-                                <p class="card-text"><span class="couleurTexte fs-4">Message initial :</span><br><span class="couleurObjet fs-4">${this.messages[index].message.toString()}</span><br>
-                                                     <span class="couleurTexte fs-4">Message final :</span><br><span class="couleurObjet fs-4">${this.messages[index].resultat}</span><br>
-                                                     <span class="couleurTexte fs-4">Clé de substitution :</span><br><span class="couleurObjet fs-4">${this.messages[index].cleSubstitution.toString()}</span><br>
-                                                     <span class="couleurTexte fs-4">Clé de transposition :</span><br><span class="couleurObjet fs-4">${this.messages[index].cleTransposition.toString()}</span><br>
-                                                     <span class="couleurTexte fs-4">Librairie de caractères :</span><br><span class="couleurObjet fs-4">${this.messages[index].librairie.toString()}</span><br>
-                                                     <span class="couleurTexte fs-4">Sens du chiffrement :</span><br><span class="couleurObjet fs-4">${sens}</span></p>
+                                <p class="card-text"><span class="couleurTexte fs-5">Message initial :</span><br><span class="couleurObjet fs-5">${this.messages[index].message.toString()}</span><br>
+                                                     <span class="couleurTexte fs-5">Message final :</span><br><span class="couleurObjet fs-5">${this.messages[index].resultat}</span><br>
+                                                     <span class="couleurTexte fs-5">Clé de substitution :</span><br><span class="couleurObjet fs-5">${this.messages[index].cleSubstitution.toString()}</span><br>
+                                                     <span class="couleurTexte fs-5">Clé de transposition :</span><br><span class="couleurObjet fs-5">${this.messages[index].cleTransposition.toString()}</span><br>
+                                                     <span class="couleurTexte fs-5">Librairie de caractères :</span><br><span class="couleurObjet fs-5">${this.messages[index].librairie.toString()}</span><br>
+                                                     <span class="couleurTexte fs-5">Sens du chiffrement :</span><br><span class="couleurObjet fs-5">${sens}</span></p>
                             </div>
                             <button class="btn btn-primary btn-sm col-md-9 mx-auto mb-2" onclick="listeDeMessages.modifierMessage(${index})" type="button">Modifier cet objet</button>
                             <button class="btn btn-danger btn-sm col-md-9 mx-auto mb-2" onclick="listeDeMessages.supprimerMessage(${index})" type="button">Supprimer cet objet</button>
