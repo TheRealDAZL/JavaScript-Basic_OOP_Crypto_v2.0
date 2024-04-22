@@ -392,7 +392,7 @@ class Liste {
 
             this.messages[index].sensDuChiffrement ? sens = "Encoder" : sens = "Décoder"
 
-            cartes += `<div class="col-lg-3 col-md-12 mb-4">
+            cartes += `<div class="col-lg-4 col-md-12 mb-4">
                         <div class="card h-100 p-2">
                             <div class="card-body">
                                 <p class="card-title couleurTexte fs-4">Objet no. ${this.messages[index].id + 1}</p>
