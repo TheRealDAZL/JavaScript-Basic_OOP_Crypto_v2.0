@@ -139,6 +139,7 @@ function encoderRadio() {
 
         elementResultat.value = elementMsgIntrant.value
         elementMsgIntrant.value = resultat.toString()
+        document.getElementById("messageExtrant").focus()
     }
 
     // MDN Web Docs - Conditional (ternary) operator
@@ -153,6 +154,7 @@ function decoderRadio() {
 
         elementResultat.value = elementMsgIntrant.value
         elementMsgIntrant.value = resultat.toString()
+        document.getElementById("messageExtrant").focus()
     }
 
     // MDN Web Docs - Conditional (ternary) operator
