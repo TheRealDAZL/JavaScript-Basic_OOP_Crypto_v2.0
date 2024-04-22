@@ -5,8 +5,13 @@ let elementMsgUtilisateur =  document.getElementById("messageUtilisateur")
 let elementMsgIntrant = document.getElementById("messageIntrant")
 let elementCleSub = document.getElementById("cleIntrantSub")
 let elementCleTra = document.getElementById("cleIntrantTra")
+let elementEncoder = document.getElementById("encoder")
+let elementDecoder = document.getElementById("decoder")
+let elementResultat = document.getElementById("messageExtrant")
 let afficherLibrairie = true
 let sensDuChiffrement
+let modifsObjet = false
+let encoder = elementEncoder.checked // Variable redondante? Voir sensDuChiffrement
 
 
 
@@ -25,11 +30,28 @@ elementLibrairie.onfocus = function () { compterCaracteres(elementLibrairie.valu
 elementMsgIntrant.onfocus = function() { compterCaracteres(elementMsgIntrant.value.toString().length, true) }
 elementCleSub.onfocus = function() { compterCaracteres(elementCleSub.value.toString().length) }
 elementCleTra.onfocus = function() { compterCaracteres(elementCleTra.value.toString().length) }
-elementLibrairie.oninput = function () { compterCaracteres(elementLibrairie.value.toString().length) }
-elementMsgIntrant.oninput = function() { compterCaracteres(elementMsgIntrant.value.toString().length, true) }
-elementCleSub.oninput = function() { compterCaracteres(elementCleSub.value.toString().length) }
-elementCleTra.oninput = function() { compterCaracteres(elementCleTra.value.toString().length) }
-document.getElementById("reinitialiser").onclick = function () { elementMsgUtilisateur.classList.add("invisible", "couleurTexte") }
+elementLibrairie.oninput = function () {
+    modifsObjet = false
+    compterCaracteres(elementLibrairie.value.toString().length)
+}
+elementMsgIntrant.oninput = function() {
+    modifsObjet = false
+    compterCaracteres(elementMsgIntrant.value.toString().length, true)
+    }
+elementCleSub.oninput = function() {
+    modifsObjet = false
+    compterCaracteres(elementCleSub.value.toString().length)
+}
+elementCleTra.oninput = function() {
+    modifsObjet = false
+    compterCaracteres(elementCleTra.value.toString().length)
+}
+elementEncoder.onclick = function () { encoderRadio() }
+elementDecoder.onclick = function () { decoderRadio() }
+document.getElementById("reinitialiser").onclick = function () {
+    elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
+    modifsObjet = false
+}
 document.getElementById("supprimerTout").onclick = function () {
     // Référence : MDN Web Docs - Window: confirm() method
     // Lien : https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
@@ -50,6 +72,7 @@ document.onsubmit = (event) => {
         elementLibrairie.value.toString())
 
     listeDeMessages.traiterObjet(objetMessage)
+    modifsObjet = false
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
 
     document.getElementById("messageExtrant").focus()
@@ -101,6 +124,34 @@ function compterCaracteres(compteur, message = false) {
     }
 }
 
+// Méthode pour échanger le message initial de place avec le résultat, lorsque l'on encode
+function encoderRadio() {
+    if (modifsObjet && !encoder && document.getElementById("messageExtrant").value !== "") {
+        let resultat = elementResultat.value
+
+        elementResultat.value = elementMsgIntrant.value
+        elementMsgIntrant.value = resultat.toString()
+    }
+
+    // MDN Web Docs - Conditional (ternary) operator
+    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+    document.getElementById("encoder").checked ? encoder = true : encoder = false
+}
+
+// Méthode pour échanger le message initial de place avec le résultat, lorsque l'on décode
+function decoderRadio() {
+    if (modifsObjet && encoder && document.getElementById("messageExtrant").value !== "") {
+        let resultat = elementResultat.value
+
+        elementResultat.value = elementMsgIntrant.value
+        elementMsgIntrant.value = resultat.toString()
+    }
+
+    // MDN Web Docs - Conditional (ternary) operator
+    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+    document.getElementById("encoder").checked ? encoder = true : encoder = false
+}
+
 // Méthode qui réinitialise tous les champs
 function reinitialiser() {
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
@@ -111,4 +162,6 @@ function reinitialiser() {
 
     document.getElementById("messageExtrant").value = ""
     document.getElementById("encoder").checked = true
+    modifsObjet = false
+    encoder = true
 }
