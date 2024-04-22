@@ -51,6 +51,10 @@ elementDecoder.onclick = function () { decoderRadio() }
 document.getElementById("reinitialiser").onclick = function () {
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
     modifsObjet = false
+    
+    // MDN Web Docs - Conditional (ternary) operator
+    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+    document.getElementById("encoder").checked ? encoder = true : encoder = false
 }
 document.getElementById("supprimerTout").onclick = function () {
     // Référence : MDN Web Docs - Window: confirm() method
@@ -73,6 +77,10 @@ document.onsubmit = (event) => {
 
     listeDeMessages.traiterObjet(objetMessage)
     modifsObjet = false
+
+    // MDN Web Docs - Conditional (ternary) operator
+    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+    document.getElementById("encoder").checked ? encoder = true : encoder = false
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
 
     document.getElementById("messageExtrant").focus()
