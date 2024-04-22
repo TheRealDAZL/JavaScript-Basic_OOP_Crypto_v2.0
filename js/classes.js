@@ -351,6 +351,12 @@ class Liste {
 
         document.getElementById("messageIntrant").focus()
 
+        modifsObjet = true
+
+        // MDN Web Docs - Conditional (ternary) operator
+        // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
+        document.getElementById("encoder").checked ? encoder = true : encoder = false
+
         this.supprimerMessage(id, true)
         this.toString()
     }
