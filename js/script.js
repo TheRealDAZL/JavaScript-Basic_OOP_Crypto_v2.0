@@ -61,7 +61,6 @@ document.getElementById("supprimerTout").onclick = function () {
     // Lien : https://developer.mozilla.org/en-US/docs/Web/API/Window/confirm
     if (window.confirm("Voulez-vous vraiment supprimer tous ces objets?")) {
         listeDeMessages.supprimerTousLesMessages()
-        reinitialiser()
     }
 }
 document.onsubmit = (event) => {
@@ -165,7 +164,7 @@ function decoderRadio() {
 // Méthode qui réinitialise tous les champs
 function reinitialiser() {
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
-    elementLibrairie.value = ""
+    elementLibrairie.value = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
     elementMsgIntrant.value = ""
     elementCleSub.value = ""
     elementCleTra.value = ""
