@@ -166,13 +166,13 @@ function decoderRadio() {
 // Méthode qui développe les cartes
 function afficherInfos() {
     if (!infosAffichees) {
-        document.querySelectorAll(".card-text").forEach((e) => { e.classList.remove("invisible") })
+        document.querySelectorAll(".card-infos").forEach((e) => { e.classList.remove("invisible") })
         document.getElementById("afficherInfos").textContent = "Cacher toutes les infos"
         infosAffichees = !infosAffichees
     }
 
     else {
-        document.querySelectorAll(".card-text").forEach((e) => { e.classList.add("invisible") })
+        document.querySelectorAll(".card-infos").forEach((e) => { e.classList.add("invisible") })
         document.getElementById("afficherInfos").textContent = "Afficher toutes les infos"
         infosAffichees = !infosAffichees
     }
