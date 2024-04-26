@@ -392,7 +392,7 @@ class Liste {
 
             this.messages[index].sensDuChiffrement ? sens = "Encoder" : sens = "Décoder"
 
-            cartes += `<div class="col-xl-4 col-lg-6 col-md-12 mb-4">
+            cartes += `<div class="col-lg-4 col-md-6 col-sm-12 mb-4">
                         <div class="card h-100 p-2">
                             <div class="card-body">
                                 <p class="card-title couleurTexte font-size-pTexte">Objet no. ${this.messages[index].id + 1}</p>
@@ -404,8 +404,8 @@ class Liste {
                                                      <span class="couleurTexte font-size-pCartes">Librairie de caractères :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].librairie.toString()}</span><br>
                                                      <span class="couleurTexte font-size-pCartes">Sens du chiffrement :</span><br><span class="couleurObjet font-size-pCartes">${sens}</span></p>
                             </div>
-                            <button class="btn btn-primary col-md-9 mx-auto mb-2 font-size-pCartes" onclick="listeDeMessages.modifierMessage(${index})" type="button">Modifier cet objet</button>
-                            <button class="btn btn-danger col-md-9 mx-auto mb-2 font-size-pCartes" onclick="listeDeMessages.supprimerMessage(${index})" type="button">Supprimer cet objet</button>
+                            <button class="btn btn-primary col-9 mx-auto mb-2 font-size-pCartes" onclick="listeDeMessages.modifierMessage(${index})" type="button">Modifier cet objet</button>
+                            <button class="btn btn-danger col-9 mx-auto mb-2 font-size-pCartes" onclick="listeDeMessages.supprimerMessage(${index})" type="button">Supprimer cet objet</button>
                         </div>
                       </div>`
         }
