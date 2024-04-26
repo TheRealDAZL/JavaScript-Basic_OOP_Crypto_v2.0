@@ -19,3 +19,43 @@
 .erreur {
     color: red;
 }
+
+.font-size-h1 {
+    font-size: 2.23rem;
+}
+
+.font-size-pTexte {
+    font-size: 1.49rem;
+}
+
+.font-size-pCartes {
+    font-size: 0.99rem;
+}
+
+@media (min-width: 992px) {
+    .font-size-h1 {
+        font-size: 2.7rem;
+    }
+
+    .font-size-pTexte {
+        font-size: 1.5rem;
+    }
+
+    .font-size-pCartes {
+        font-size: 1.2rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    .font-size-h1 {
+        font-size: 3.27rem;
+    }
+
+    .font-size-pTexte {
+        font-size: 1.81rem;
+    }
+
+    .font-size-pCartes {
+        font-size: 1.45rem;
+    }
+}
