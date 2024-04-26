@@ -397,9 +397,9 @@ class Liste {
                             <div class="card-body">
                                 <p class="card-title couleurTexte font-size-pTexte">Objet no. ${this.messages[index].id + 1}</p>
                                 <img src="${this.messages[index].image}" class="img-fluid" alt="Image de l'objet">
-                                <p class="card-text invisible"><span class="couleurTexte font-size-pCartes">Message initial :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].message.toString()}</span><br>
-                                                     <span class="couleurTexte font-size-pCartes">Message final :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].resultat}</span><br>
-                                                     <span class="couleurTexte font-size-pCartes">Clé de substitution :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].cleSubstitution.toString()}</span><br>
+                                <p><span class="couleurTexte font-size-pCartes">Message initial :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].message.toString()}</span><br>
+                                   <span class="couleurTexte font-size-pCartes">Message final :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].resultat.toString()}</span></p>
+                                <p class="card-infos invisible"><span class="couleurTexte font-size-pCartes">Clé de substitution :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].cleSubstitution.toString()}</span><br>
                                                      <span class="couleurTexte font-size-pCartes">Clé de transposition :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].cleTransposition.toString()}</span><br>
                                                      <span class="couleurTexte font-size-pCartes">Librairie de caractères :</span><br><span class="couleurObjet font-size-pCartes">${this.messages[index].librairie.toString()}</span><br>
                                                      <span class="couleurTexte font-size-pCartes">Sens du chiffrement :</span><br><span class="couleurObjet font-size-pCartes">${sens}</span></p>
