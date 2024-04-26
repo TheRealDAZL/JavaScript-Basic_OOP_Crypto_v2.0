@@ -11,6 +11,7 @@ let elementResultat = document.getElementById("messageExtrant")
 let afficherLibrairie = true
 let sensDuChiffrement
 let modifsObjet = false
+let infosAffichees = false
 let encoder = elementEncoder.checked // Variable redondante? Voir sensDuChiffrement
 
 
@@ -24,7 +25,7 @@ document.getElementById("messageLibrairie").innerHTML = `Instructions :<br>Par d
     `laisse les champs vides<br>alors les clés sont générées de façon automatique.<br><br>Par défaut, les caractères autorisés pour ` +
     `le message et les deux clés sont :<br>0123456789abcdef<br>ghijklmnopqrstuv<br>wxyzABCDEFGHIJKL<br>MNOPQRSTUVWXYZ .<br><br>Vous pouvez aussi 
      créer votre propre librairie de caractères, cependant<br>votre message et vos clés devront être de la même longueur que votre librairie.`
-
+document.getElementById("afficherInfos").onclick = function () { afficherInfos() }
 elementBtnLibrairie.onclick = function () { afficherInstructions() }
 elementLibrairie.onfocus = function () { compterCaracteres(elementLibrairie.value.toString().length) }
 elementMsgIntrant.onfocus = function() { compterCaracteres(elementMsgIntrant.value.toString().length, true) }
@@ -51,6 +52,7 @@ elementDecoder.onclick = function () { decoderRadio() }
 document.getElementById("reinitialiser").onclick = function () {
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
     modifsObjet = false
+    infosAffichees = false
     
     // MDN Web Docs - Conditional (ternary) operator
     // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
@@ -161,6 +163,19 @@ function decoderRadio() {
     document.getElementById("encoder").checked ? encoder = true : encoder = false
 }
 
+// Méthode qui développe les cartes
+function afficherInfos() {
+    if (!infosAffichees) {
+        document.querySelectorAll(".card-text").forEach((e) => { e.classList.remove("invisible") })
+        infosAffichees = !infosAffichees
+    }
+
+    else {
+        document.querySelectorAll(".card-text").forEach((e) => { e.classList.add("invisible") })
+        infosAffichees = !infosAffichees
+    }
+}
+
 // Méthode qui réinitialise tous les champs
 function reinitialiser() {
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
@@ -173,4 +188,5 @@ function reinitialiser() {
     document.getElementById("encoder").checked = true
     modifsObjet = false
     encoder = true
+    infosAffichees = false
 }
