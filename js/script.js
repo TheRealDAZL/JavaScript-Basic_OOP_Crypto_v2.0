@@ -16,6 +16,7 @@ let encoder = elementEncoder.checked // Variable redondante? Voir sensDuChiffrem
 
 
 
+
 listeDeMessages.allerChercherListe()
 reinitialiser()
 
