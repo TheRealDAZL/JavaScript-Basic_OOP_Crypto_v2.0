@@ -218,13 +218,13 @@ class Liste {
                 "cleTransposition" : "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .",
                 "sensDuChiffrement" : true,
                 "librairie" : "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .",
-                "resultat" : "13z9lfFlhrLxvDRJlPXVF.15zb7hPndtzBjLZVp3Rdvn7xBHTVHbhtNL79THrtZ.",
+                "resultat" : "242cyk6siAaICQeYa4icGkmsmAqIKQuY68yoOECUq8GoSEKUegOMWgSMuwWw 0 0",
                 "image" : "img/des.jpg"
             },
 
             {
                 "id": 5,
-                "message": "13z9lfFlhrLxvDRJlPXVF.15zb7hPndtzBjLZVp3Rdvn7xBHTVHbhtNL79THrtZ.",
+                "message": "242cyk6siAaICQeYa4icGkmsmAqIKQuY68yoOECUq8GoSEKUegOMWgSMuwWw 0 0",
                 "cleSubstitution" : "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .",
                 "cleTransposition" : "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .",
                 "sensDuChiffrement" : false,
@@ -247,13 +247,13 @@ class Liste {
         objetMessage.cleTransposition = objetMessage.validerCle(objetMessage.cleTransposition)
 
         if (objetMessage.sensDuChiffrement) {
-            objetMessage.transposerLesCaracteres(objetMessage.message, objetMessage.sensDuChiffrement)
-            objetMessage.substituerLesCaracteres(objetMessage.resultat, objetMessage.sensDuChiffrement)
+            objetMessage.substituerLesCaracteres(objetMessage.message, objetMessage.sensDuChiffrement)
+            objetMessage.transposerLesCaracteres(objetMessage.resultat, objetMessage.sensDuChiffrement)
         }
 
         else {
-            objetMessage.substituerLesCaracteres(objetMessage.message, objetMessage.sensDuChiffrement)
-            objetMessage.transposerLesCaracteres(objetMessage.resultat, objetMessage.sensDuChiffrement)
+            objetMessage.transposerLesCaracteres(objetMessage.message, objetMessage.sensDuChiffrement)
+            objetMessage.substituerLesCaracteres(objetMessage.resultat, objetMessage.sensDuChiffrement)
         }
 
         document.getElementById("librairie").value = ""
