@@ -106,9 +106,11 @@ class Message {
             let indexCaractere1 = this.librairie.indexOf(message[i].toString())
             let indexCaractere2 = this.librairie.indexOf(this.cleSubstitution[i].toString())
 
+            // Si le caractère est présent dans la librairie, appliquer les instructions suivantes
             if (indexCaractere1 !== -1)
             {
-                let indexCaractereFinal = this.trouverIndexFinal(indexCaractere1, indexCaractere2, sens)
+                const deplacement = sens ? indexCaractere2 : -indexCaractere2 + this.librairie.length
+                let indexCaractereFinal = (indexCaractere1 + deplacement) % this.librairie.length
 
                 extrant += this.librairie[indexCaractereFinal].toString()
             }
@@ -123,65 +125,28 @@ class Message {
         this.resultat = extrant.toString()
     }
 
-    // Méthode qui retourne la valeur de l'index final pour la substitution, en utilisant deux index et le sens du chiffrement
-    trouverIndexFinal(indexCaractere1, indexCaractere2, sens) {
-        if (sens) {
-            // Si on a trouvé le caractère dans la librairie, alors additionner les index des deux caractères,
-            // puis faire le résultat modulo librairie.length. Finalement, aller chercher le nouveau caractère avec le
-            // nouvel index, et le concaténer avec le reste du string
-            // Référence : Wikipedia - Caesar cipher
-            // Lien : https://en.wikipedia.org/wiki/Caesar_cipher
-            return (indexCaractere1 + indexCaractere2) % this.librairie.length
-        }
-
-        else {
-            // Si on a trouvé le caractère dans la librairie, alors soustraire l'index du deuxième caractère du premier
-            // caractère, ensuite lui additionner librairie.length, puis faire le résultat modulo librairie.length. J'additionne
-            // librairie.length à la soustraction afin de ne pas avoir de résultats d'une valeur négative, avant d'appliquer le
-            // modulo. Finalement, aller chercher le nouveau caractère avec le nouvel index, et le concaténer avec le reste du
-            // string
-            // Référence : Wikipedia - Caesar cipher
-            // Lien : https://en.wikipedia.org/wiki/Caesar_cipher
-            return (indexCaractere1 - indexCaractere2 + this.librairie.length) % this.librairie.length
-        }
-    }
-
     // Méthode qui transpose les caractères du message, en utilisant la clé de transposition, le sens du chiffrement et la librairie
     transposerLesCaracteres(message, sens) {
         // Référence : MDN Web Docs - Array.from()
         // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from
         let extrant = Array.from(message.toString())
+        let indexPosition1;
+        sens ? indexPosition1 = 0 : indexPosition1 = extrant.length - 1
+        let incrementation;
 
-        if (sens) {
-            for (let indexPosition1 = 0; indexPosition1 < extrant.length; indexPosition1++) {
-                extrant = this.echangerPositions(extrant, indexPosition1, this.librairie)
-            }
-        }
+        for (sens ? incrementation = 1 : incrementation = -1; indexPosition1 !== extrant.length && indexPosition1 !== -1; indexPosition1 += incrementation) {
+            let indexPosition2 = this.librairie.indexOf(this.cleTransposition[indexPosition1].toString())
 
-        else {
-            for (let indexPosition1 = extrant.length - 1; indexPosition1 >= 0; indexPosition1--) {
-                extrant = this.echangerPositions(extrant, indexPosition1, this.librairie)
-            }
+            let indexPositionFinale = (indexPosition1 + indexPosition2) % this.librairie.length
+
+            let valeurTemp = extrant[indexPositionFinale]
+            extrant[indexPositionFinale] = extrant[indexPosition1]
+            extrant[indexPosition1] = valeurTemp
         }
 
         // Référence : MDN Web Docs - Array.prototype.join()
         // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
         this.resultat = extrant.join("")
-    }
-
-    // Méthode qui retourne le tableau sous une transposition, en utilisant un index et le string extrant
-    echangerPositions(extrant, indexPosition1) {
-        let indexPosition2 = this.librairie.indexOf(this.cleTransposition[indexPosition1].toString())
-
-        let indexPositionFinale = (indexPosition1 + indexPosition2) % this.librairie.length
-
-        // Référence : Wikipedia - Fisher–Yates shuffle
-        // Lien : https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
-        let valeurTemp = extrant[indexPositionFinale]
-        extrant[indexPositionFinale] = extrant[indexPosition1]
-        extrant[indexPosition1] = valeurTemp
-
-        return extrant
     }
 
     // Méthode pour créer des nombres aléatoires sur mesure
