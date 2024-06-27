@@ -71,11 +71,26 @@ class Message {
             throw new Error()
         }
 
-        // Si la clé ne fait pas la même longueur que la librairie, ajouter des caractères à la fin du string, afin que le string fasse
-        // exactement la même longueur
-        for (let i = cle.length; i < this.librairie.length; i++) {
-            let index = this.randomiser(this.librairie.length)
-            cle = cle.toString() + this.librairie[index].toString()
+        // Si la clé est de la même longueur que la librairie, retourner la clé comme telle
+        if (cle.length === this.librairie.length) {
+            return cle
+        }
+
+        // Si la clé est vide, générer des caractères afin que le string fasse exactement la même longueur que la librairie
+        else if (cle.length === 0) {
+            for (let i = 0; i < this.librairie.length; i++) {
+                let index = this.randomiser(this.librairie.length)
+                cle = cle.toString() + this.librairie[index].toString()
+            }
+
+            return cle
+        }
+
+        let longueurCle = cle.length
+
+        // Si la clé est moins longue que la librairie, répéter les caractères de la clés jusqu'à ce que la clé soit de la même longueur que la librairie
+        for (let i = longueurCle; i < this.librairie.length; i++) {
+            cle = cle.toString() + cle[i % longueurCle].toString()
         }
 
         return cle
