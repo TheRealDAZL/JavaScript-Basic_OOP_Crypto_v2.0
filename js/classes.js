@@ -109,7 +109,7 @@ class Message {
             // Si le caractère est présent dans la librairie, appliquer les instructions suivantes
             if (indexCaractere1 !== -1)
             {
-                const deplacement = sens ? indexCaractere2 : -indexCaractere2 + this.librairie.length
+                let deplacement = sens ? indexCaractere2 : -indexCaractere2 + this.librairie.length
                 let indexCaractereFinal = (indexCaractere1 + deplacement) % this.librairie.length
 
                 extrant += this.librairie[indexCaractereFinal].toString()
