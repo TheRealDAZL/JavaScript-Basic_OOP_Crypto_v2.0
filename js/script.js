@@ -1,4 +1,3 @@
-let listeDeMessages = new Liste()
 let elementBtnLibrairie = document.getElementById("afficherLibrairie")
 let elementLibrairie = document.getElementById("librairie")
 let elementMsgUtilisateur =  document.getElementById("messageUtilisateur")
@@ -8,10 +7,12 @@ let elementCleTra = document.getElementById("cleIntrantTra")
 let elementEncoder = document.getElementById("encoder")
 let elementDecoder = document.getElementById("decoder")
 let elementResultat = document.getElementById("messageExtrant")
+let listeDeMessages = new Liste()
 let sensDuChiffrement = elementEncoder.checked
 let modifsObjet = false
 let afficherLibrairie = true
 let infosAffichees = false
+
 
 
 
