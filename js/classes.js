@@ -254,6 +254,7 @@ class Liste {
         document.getElementById("cleIntrantSub").value = ""
         document.getElementById("cleIntrantTra").value = ""
         document.getElementById("encoder").checked = true
+        sensDuChiffrement = true
         document.getElementById("messageExtrant").value = objetMessage.resultat
 
         this.ajouterMessage(objetMessage)
@@ -328,7 +329,7 @@ class Liste {
 
         // MDN Web Docs - Conditional (ternary) operator
         // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-        document.getElementById("encoder").checked ? encoder = true : encoder = false
+        document.getElementById("encoder").checked ? sensDuChiffrement = true : sensDuChiffrement = false
 
         this.supprimerMessage(id, true)
         this.toString()

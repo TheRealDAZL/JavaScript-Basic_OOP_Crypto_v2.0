@@ -8,11 +8,10 @@ let elementCleTra = document.getElementById("cleIntrantTra")
 let elementEncoder = document.getElementById("encoder")
 let elementDecoder = document.getElementById("decoder")
 let elementResultat = document.getElementById("messageExtrant")
-let afficherLibrairie = true
-let sensDuChiffrement
+let sensDuChiffrement = elementEncoder.checked
 let modifsObjet = false
+let afficherLibrairie = true
 let infosAffichees = false
-let encoder = elementEncoder.checked // Variable redondante? Voir sensDuChiffrement
 
 
 
@@ -48,16 +47,10 @@ elementCleTra.oninput = function() {
     modifsObjet = false
     compterCaracteres(elementCleTra.value.toString().length)
 }
-elementEncoder.onclick = function () { encoderRadio() }
-elementDecoder.onclick = function () { decoderRadio() }
+elementEncoder.onclick = function () { encoderDecoderRadio(true) }
+elementDecoder.onclick = function () { encoderDecoderRadio(false) }
 document.getElementById("reinitialiser").onclick = function () {
-    elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
-    modifsObjet = false
-    infosAffichees = false
-    
-    // MDN Web Docs - Conditional (ternary) operator
-    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-    document.getElementById("encoder").checked ? encoder = true : encoder = false
+    reinitialiser()
 }
 document.getElementById("supprimerTout").onclick = function () {
     // Référence : MDN Web Docs - Window: confirm() method
@@ -80,32 +73,12 @@ document.onsubmit = (event) => {
     listeDeMessages.traiterObjet(objetMessage)
     modifsObjet = false
 
-    // MDN Web Docs - Conditional (ternary) operator
-    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-    document.getElementById("encoder").checked ? encoder = true : encoder = false
     elementMsgUtilisateur.classList.add("invisible", "couleurTexte")
 
     document.getElementById("messageExtrant").focus()
 }
 
 
-
-// Méthode qui affiche ou qui cache la liste des caratères valides
-function afficherInstructions() {
-    let messageLibrairie = document.getElementById("messageLibrairie")
-
-    if (!afficherLibrairie) {
-        elementBtnLibrairie.textContent = "Cacher les instructions"
-        messageLibrairie.classList.remove("invisible")
-    }
-
-    else {
-        elementBtnLibrairie.textContent = "Afficher les instructions"
-        messageLibrairie.classList.add("invisible")
-    }
-
-    afficherLibrairie = !afficherLibrairie
-}
 
 // Méthode qui compte la longueur du string et qui retourne des informations à l'utilisateur
 // Cette méthode prend comme argument :
@@ -134,9 +107,17 @@ function compterCaracteres(compteur, message = false) {
     }
 }
 
-// Méthode pour échanger le message initial de place avec le résultat, lorsque l'on encode
-function encoderRadio() {
-    if (modifsObjet && !encoder && document.getElementById("messageExtrant").value !== "") {
+// Méthode pour échanger le message initial de place avec le résultat, lorsque l'on encode ou lorsque l'on décode
+function encoderDecoderRadio(encoder) {
+    if (encoder && modifsObjet && !sensDuChiffrement && document.getElementById("messageExtrant").value !== "") {
+        let resultat = elementResultat.value
+
+        elementResultat.value = elementMsgIntrant.value
+        elementMsgIntrant.value = resultat.toString()
+        document.getElementById("messageExtrant").focus()
+    }
+
+    else if (!encoder && modifsObjet && sensDuChiffrement && document.getElementById("messageExtrant").value !== "") {
         let resultat = elementResultat.value
 
         elementResultat.value = elementMsgIntrant.value
@@ -146,22 +127,24 @@ function encoderRadio() {
 
     // MDN Web Docs - Conditional (ternary) operator
     // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-    document.getElementById("encoder").checked ? encoder = true : encoder = false
+    document.getElementById("encoder").checked ? sensDuChiffrement = true : sensDuChiffrement = false
 }
 
-// Méthode pour échanger le message initial de place avec le résultat, lorsque l'on décode
-function decoderRadio() {
-    if (modifsObjet && encoder && document.getElementById("messageExtrant").value !== "") {
-        let resultat = elementResultat.value
+// Méthode qui affiche ou qui cache la liste des caratères valides
+function afficherInstructions() {
+    let messageLibrairie = document.getElementById("messageLibrairie")
 
-        elementResultat.value = elementMsgIntrant.value
-        elementMsgIntrant.value = resultat.toString()
-        document.getElementById("messageExtrant").focus()
+    if (!afficherLibrairie) {
+        elementBtnLibrairie.textContent = "Cacher les instructions"
+        messageLibrairie.classList.remove("invisible")
     }
 
-    // MDN Web Docs - Conditional (ternary) operator
-    // Lien : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_operator
-    document.getElementById("encoder").checked ? encoder = true : encoder = false
+    else {
+        elementBtnLibrairie.textContent = "Afficher les instructions"
+        messageLibrairie.classList.add("invisible")
+    }
+
+    afficherLibrairie = !afficherLibrairie
 }
 
 // Méthode qui développe les cartes
@@ -169,14 +152,14 @@ function afficherInfos() {
     if (!infosAffichees) {
         document.querySelectorAll(".card-infos").forEach((e) => { e.classList.remove("invisible") })
         document.getElementById("afficherInfos").textContent = "Cacher toutes les infos"
-        infosAffichees = !infosAffichees
     }
 
     else {
         document.querySelectorAll(".card-infos").forEach((e) => { e.classList.add("invisible") })
         document.getElementById("afficherInfos").textContent = "Afficher toutes les infos"
-        infosAffichees = !infosAffichees
     }
+
+    infosAffichees = !infosAffichees
 }
 
 // Méthode qui réinitialise tous les champs
@@ -189,7 +172,8 @@ function reinitialiser() {
 
     document.getElementById("messageExtrant").value = ""
     document.getElementById("encoder").checked = true
+    sensDuChiffrement = true
     modifsObjet = false
-    encoder = true
     infosAffichees = false
+    elementMsgIntrant.focus()
 }
