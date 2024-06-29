@@ -17,7 +17,7 @@ class Message {
             this.librairie = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
         }
 
-        for (let i = 0; i < this.librairie.length; i++) {
+        for (let i = 0; i < this.librairie.length - 1; i++) {
             if (this.librairie.substring(i + 1).includes(this.librairie[i])) {
                 document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
                 document.getElementById("messageUtilisateur").classList.add("erreur")
