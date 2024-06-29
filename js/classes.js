@@ -13,7 +13,11 @@ class Message {
 
     // Méthode qui valide la librairie et l'enregistre dans l'objet
     validerLibrairie() {
-        if (this.librairie === "") {
+        if (this.librairie.length === 1) {
+            this.erreurChiffrement(`Votre librairie doit contenir plus d'un caractère.`)
+        }
+
+        else if (this.librairie === "") {
             this.librairie = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
         }
 
