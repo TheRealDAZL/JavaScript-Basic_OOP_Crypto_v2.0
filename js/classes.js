@@ -19,10 +19,7 @@ class Message {
 
         for (let i = 0; i < this.librairie.length - 1; i++) {
             if (this.librairie.substring(i + 1).includes(this.librairie[i])) {
-                document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
-                document.getElementById("messageUtilisateur").classList.add("erreur")
-                document.getElementById("messageUtilisateur").textContent = `Votre librairie ne doit pas contenir plus d'une fois le même caractère.`
-                throw new Error()
+                this.erreurChiffrement(`Votre librairie ne doit pas contenir plus d'une fois le même caractère.`)
             }
         }
     }
@@ -32,10 +29,7 @@ class Message {
     validerMessage() {
         // Si le message est vide ou trop long, afficher un message d'erreur, puis lancer une erreur
         if (this.message.length < 1 || this.message.length > this.librairie.length) {
-            document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
-            document.getElementById("messageUtilisateur").classList.add("erreur")
-            document.getElementById("messageUtilisateur").textContent = `Votre message doit faire de 1 à ${this.librairie.length} caractères de long.`
-            throw new Error()
+            this.erreurChiffrement(`Votre message doit faire de 1 à ${this.librairie.length} caractères de long.`)
         }
 
         // Si le message ne fait pas la même longueur que la librairie, ajouter des caractères à la fin du string, afin que le string fasse
@@ -55,20 +49,14 @@ class Message {
             for (let i = 0; i < cle.length; i++) {
                 // Si un des caractères de la clé n'est pas valide, afficher un message d'erreur
                 if (!this.librairie.includes(cle[i])) {
-                    document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
-                    document.getElementById("messageUtilisateur").classList.add("erreur")
-                    document.getElementById("messageUtilisateur").innerHTML = `Votre clé contient des caractères invalides. Les caractères valides sont :<br>${this.librairie.toString()}`
-                    throw new Error()
+                    this.erreurChiffrement(`Votre clé contient des caractères invalides. Les caractères valides sont :<br>${this.librairie.toString()}`)
                 }
             }
         }
 
         // Si la clé est trop longue, afficher un message d'erreur, puis lancer une erreur
         else if (cle.length > this.librairie.length) {
-            document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
-            document.getElementById("messageUtilisateur").classList.add("erreur")
-            document.getElementById("messageUtilisateur").textContent = `Votre clé contient plus de ${this.librairie.length} caractères.`
-            throw new Error()
+            this.erreurChiffrement(`Votre clé contient plus de ${this.librairie.length} caractères.`)
         }
 
         // Si la clé est de la même longueur que la librairie, retourner la clé comme telle
@@ -118,7 +106,7 @@ class Message {
             // Si le caractère n'y est pas, afficher un message d'erreur, et lancer une erreur
             else
             {
-                this.erreurChiffrement()
+                this.erreurChiffrement(`Votre message contient des caractères invalides. Les caractères valides sont :<br>${this.librairie.toString()}`)
             }
         }
 
@@ -155,10 +143,10 @@ class Message {
     }
 
     // Méthode pour gérer les erreurs lors du chiffrement
-    erreurChiffrement() {
+    erreurChiffrement(message) {
         document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
         document.getElementById("messageUtilisateur").classList.add("erreur")
-        document.getElementById("messageUtilisateur").innerHTML = `Votre message contient des caractères invalides. Les caractères valides sont :<br>${this.librairie.toString()}`
+        document.getElementById("messageUtilisateur").textContent = message
         throw new Error()
     }
 }
