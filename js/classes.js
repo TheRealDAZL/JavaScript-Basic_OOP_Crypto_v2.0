@@ -146,7 +146,8 @@ class Message {
     erreurChiffrement(message) {
         document.getElementById("messageUtilisateur").classList.remove("couleurTexte")
         document.getElementById("messageUtilisateur").classList.add("erreur")
-        document.getElementById("messageUtilisateur").textContent = message
+        document.getElementById("messageUtilisateur").innerHTML = message
+        document.getElementById("messageUtilisateur").focus()
         throw new Error()
     }
 }
@@ -244,7 +245,7 @@ class Liste {
             objetMessage.substituerLesCaracteres(objetMessage.resultat, objetMessage.sensDuChiffrement)
         }
 
-        document.getElementById("librairie").value = ""
+        document.getElementById("librairie").value = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ."
         document.getElementById("messageIntrant").value = ""
         document.getElementById("cleIntrantSub").value = ""
         document.getElementById("cleIntrantTra").value = ""
